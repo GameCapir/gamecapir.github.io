@@ -6,7 +6,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css" />
-    <title>Hello world!</title>
+    <title>Capir - About</title>
+    <style>
+        .subtitle {
+            margin: 0rem 0rem 0.5rem -1rem;
+            padding: 0.5rem 1rem 0.2rem 1rem;
+            font-size: 1.4em;
+            color: white;
+            background-color: #0065ae;
+            height: 2.8rem;
+        }
+
+        .subtitle .icon {
+            margin-top: -0.2rem;
+            margin-right: 0.5rem;
+        }
+
+        .blue-box {
+            background-color: #0065ae;
+            padding: 0.5rem;
+            margin: 0 auto 1rem auto;
+            width: fit-content;
+            color: white;
+            font-weight: bold;
+        }
+
+        img {
+            margin: 1rem auto;
+            display: block;
+        }
+
+        .icon {
+            width: 2rem;
+            margin: 0.2rem;
+            margin-top: -0.2rem;
+            padding: 0.1rem;
+            display: inline;
+        }
+
+        .image-points {
+            display: block;
+            width: fit-content;
+            text-align: left;
+            margin: 0 auto 2rem auto;
+
+        }
+
+        ul li {
+            list-style: none;
+        }
+
+        ul li::first-letter {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+
+        .image-points-long {
+            display: flex
+        }
+
+
+        .image-points-long ul {
+            padding-top: 1rem;
+        }
+    </style>
 </head>
 
 <body>
@@ -21,20 +85,75 @@
 
     <main>
         <h1>About</h1>
-        <p>Capir is a puzzle game where you rotate groups of tiles to match the solution.</p>
-        <p>To rotate the tiles you press on the first tile of the group move to the last tile and release.</p>
-        <p>You can only rotate groups of tiles that are aligned.</p>
-        <p>You have a limited number of moves to solve the puzzle.</p>
-        <h1>Game modes</h1>
-        <p>Capir has two game modes:</p>
-        <h2>Challenge mode</h2>
-        <p>The puzzles are custom made challenges, where the moves to solve the puzzle have been decided beforehand.</p>
-        <p>Challenge mode puzzles can be solved in 3, 4, or 5 moves, depending on the difficulty level.</p>
-        <p>The pieces in challenge mode show a number of dots, that hint how many times you should rotate a tile.</p>
-        <h2>Free mode</h2>
-        <p>Each puzzle is randomly generated and the amount of moves to solve them is not decided.</p>
-        <p>The best scores in Free mode are recorded on a global leaderboard, you compete against the world!</p>
+        <p>Capir is a puzzle game where you rotate groups of pieces to match a solution.</p>
+        <p>To rotate the pieces, press on the first one and release on the last in line.</p>
+        <img class="animation" src="./images/interaction-animation.webp" />
+        <br />
+        <p>Capir has two game modes: challenge mode and free mode.</p>
+        <h2 class="subtitle"><img class="icon" src="./images/level_icon_easy.png" />Challenge mode</h2>
+        <p>In challenge mode each puzzle is custom made, the moves to solve the puzzle have been carefully selected.</p>
+        <p>In that mode the puzzles can be solved in 3, 4, or 5 moves, depending on the difficulty level.</p>
+        <div class="blue-box">
+            3<img class="icon" src="./images/level_icon_easy.png" />
+            4<img class="icon" src="./images/level_icon_medium.png" />
+            5<img class="icon" src="./images/level_icon_hard.png" />
+        </div>
+        <p>Pieces in challenge mode have dots that hint how many times they should be rotated.</p>
+        <img class="animation" src="./images/challenge-dots-animation.webp" />
 
+        <h2 class="subtitle"><img class="icon" src="./images/icon_mode_free.png" />Free mode</h2>
+        <p>In free mode each puzzle is randomly generated and the amount of moves to solve them is not decided.</p>
+        <p>The best scores in free mode are recorded in a global leaderboard, you compete against the world!</p>
+        <img class="animation" src="./images/free-animation.webp" />
+
+        <h2 class="subtitle">Game screen</h2>
+        <div style="text-align: center;">
+            <div class="image-points">
+                <h3>In challenge mode</h3>
+                <img src="./images/game-screen-header-challenge.png">
+                <ul>
+                    <li>a: Current moves / max moves</li>
+                    <li>b: Current level</li>
+                    <li>c: Show the puzzle solution</li>
+                    <li>d: The shape to match</li>
+                </ul>
+            </div>
+            <div class="image-points">
+                <h3>In free mode</h3>
+                <img src="./images/game-screen-header-free.png">
+                <ul>
+                    <li>a: Current moves / max moves</li>
+                    <li>b: Current level</li>
+                    <li>d: The shape to match</li>
+                </ul>
+            </div>
+            <div class="image-points">
+                <h3>Navigation</h3>
+                <img src="./images/game-screen-footer.png">
+                <ul>
+                    <li>e: Go to start screen</li>
+                    <li>f: Go to setup screen</li>
+                    <li>g: Next puzzle</li>
+                    <li>h: Previous puzzle</li>
+                    <li>i: Restart level</li>
+                </ul>
+            </div>
+        </div>
+        <h2 class="subtitle">Setup screen</h2>
+        <h3>In challenge mode</h3>
+        <div class="image-points-long">
+            <img src="./images/setup-screen-challenge.png">
+            <ul>
+                <li><b>a:</b> Player moves on the selected level</li>
+                <li><b>b:</b> Selected level identification</li>
+                <li><b>c:</b> Selected level</li>
+                <li><b>d:</b> Complete level</li>
+                <li><b>e:</b> Incomplete level</li>
+                <li><b>f:</b> Locked level</li>
+                <li><b>g:</b> Go to game screen</li>
+                <li><b>h:</b> Go to progress screen</li>
+            </ul>
+        </div>
     </main>
 
 </body>
