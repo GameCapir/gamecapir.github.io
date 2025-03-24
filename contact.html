@@ -32,10 +32,19 @@
             mode: 'no-cors',
         }).then(function () {
             form.hidden = true;
+            document.getElementById('contactFormPrivacy').hidden = true;
             document.getElementById('confirmation').hidden = false;
         }).catch(function (error) {
             console.log('Error:', error);
         });
+    }
+    function onAcceptChange(e) {
+        var submitButton = document.getElementById("submitButton");
+        submitButton.disabled = !e.currentTarget.checked;
+    }
+    function onPolicyClick(e) {
+        var contactFormPrivacy = document.getElementById("contactFormPrivacy");
+        contactFormPrivacy.hidden = !contactFormPrivacy.hidden;
     }
 </script>
 
@@ -63,13 +72,63 @@
                 <label for="message">Message</label>
                 <textarea id="message" name="entry.1044671827"></textarea>
 
-                <button type="submit">Send</button>
+                <input id="acceptPolicy" type="checkbox" onchange="onAcceptChange(event)">
+                <label for="acceptPolicy">I accept the</label>&nbsp;<a onclick="onPolicyClick(event)">privacy policy</a>
+                <br>
+                <br>
+                <button disabled id="submitButton" type="submit">Send</button>
 
             </fieldset>
         </form>
         <div id="confirmation" hidden="true">
             <h2>Thank you for your submission!</h2>
         </div>
+        <div id="contactFormPrivacy" hidden="true">
+            <p>Effective Date: 2025-03-24</p>
+            <h4>1. Introduction</h4>
+            <p>
+                This Privacy Policy explains how we collect, use, and protect the information you provide when using our
+                contact form. By submitting your information, you agree to the terms outlined in this policy.
+            </p>
+            <h4>2. Information We Collect</h4>
+            <p> When you submit the contact form, we collect the following information:</p>
+            <ul>
+                <li>Name (optional) – If provided, helps us address you personally.</li>
+                <li>Email (required) – Used to respond to your inquiry.</li>
+                <li>Message (required) – The content of your inquiry or feedback.</li>
+            </ul>
+            <h4>3. How We Use Your Information</h4>
+            <p>We use the collected information solely for the purpose of:</p>
+            <ul>
+                <li>Responding to your inquiries or feedback.</li>
+                <li>Providing support or further assistance.</li>
+            </ul>
+            <h4>4. Data Storage and Security</h4>
+            <p>Your submitted information is stored securely in a private Google Forms database accessible only to
+                authorized personnel.</p>
+            <p>We take reasonable measures to protect your data from unauthorized access, loss, or misuse.</p>
+            <h4>5. Data Sharing and Disclosure</h4>
+            <p>We do not sell, rent, or distribute your information to third parties.</p>
+            <p>Your data will only be shared if required by law or necessary to address security or technical issues.
+            </p>
+            <h4>6. Data Retention</h4>
+            <p>We retain your information only as long as necessary to respond to your inquiry and provide support.</p>
+            <p>If you wish to have your data removed, you may request deletion by contacting us at <a
+                    href="mailto:game.capir@gmail.com">game.capir@gmail.com</a>
+            </p>
+            <h4>7. Your Rights</h4>
+            <p>You have the right to request access to, correction, or deletion of your submitted data.</p>
+            <p>To make such a request, please contact us at <a
+                    href="mailto:game.capir@gmail.com">game.capir@gmail.com</a>.</p>
+            <h4>8. Changes to This Policy</h4>
+            <p> We may update this Privacy Policy from time to time. Any changes will be reflected on this page with a
+                revised effective date.</p>
+            <h4>9. Contact Us</h4>
+            <p>If you have any questions or concerns about this Privacy Policy, please contact us at <a
+                    href="mailto:game.capir@gmail.com">game.capir@gmail.com</a>.
+            </p>
+        </div>
+
     </main>
 
 </body>
