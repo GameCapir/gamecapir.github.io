@@ -6,56 +6,58 @@
     <title>Capir - Privacy Policy</title>
     <meta name="description" content="Capir privacy policy">
     <link rel="canonical" href="https://gamecapir.github.io/" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <script>
+        function submitForm() {
+            event.preventDefault();
+
+            var form = document.getElementById('submitForm');
+            var iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSd3cgkfoeOFF4nsRzDn2BSHtqzCJ5O31wlpvsqMWsRXG4nBEg/formResponse';
+            document.body.appendChild(iframe);
+
+            var formData = new FormData(form);
+            var data = new URLSearchParams();
+
+            for (var pair of formData.entries()) {
+                data.append(pair[0], pair[1]);
+            }
+
+            fetch(iframe.src, {
+                method: 'POST',
+                body: data,
+                mode: 'no-cors',
+            }).then(function () {
+                form.hidden = true;
+                document.getElementById('contactFormPrivacy').hidden = true;
+                document.getElementById('confirmation').hidden = false;
+            }).catch(function (error) {
+                console.log('Error:', error);
+            });
+        }
+        function onAcceptChange(e) {
+            var submitButton = document.getElementById("submitButton");
+            submitButton.disabled = !e.currentTarget.checked;
+        }
+        function onPolicyClick(e) {
+            document.getElementById('contactFormPrivacy').hidden = false;
+            document.getElementById("submitForm").hidden = true;
+        }
+        function closePrivacy() {
+            document.getElementById('contactFormPrivacy').hidden = true;
+            document.getElementById("submitForm").hidden = false;
+        }
+    </script>
 </head>
 
-<script>
-    function submitForm() {
-        event.preventDefault();
-
-        var form = document.getElementById('submitForm');
-        var iframe = document.createElement('iframe');
-        iframe.style.display = 'none';
-        iframe.src = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSd3cgkfoeOFF4nsRzDn2BSHtqzCJ5O31wlpvsqMWsRXG4nBEg/formResponse';
-        document.body.appendChild(iframe);
-
-        var formData = new FormData(form);
-        var data = new URLSearchParams();
-
-        for (var pair of formData.entries()) {
-            data.append(pair[0], pair[1]);
-        }
-
-        fetch(iframe.src, {
-            method: 'POST',
-            body: data,
-            mode: 'no-cors',
-        }).then(function () {
-            form.hidden = true;
-            document.getElementById('contactFormPrivacy').hidden = true;
-            document.getElementById('confirmation').hidden = false;
-        }).catch(function (error) {
-            console.log('Error:', error);
-        });
-    }
-    function onAcceptChange(e) {
-        var submitButton = document.getElementById("submitButton");
-        submitButton.disabled = !e.currentTarget.checked;
-    }
-    function onPolicyClick(e) {
-        var contactFormPrivacy = document.getElementById("contactFormPrivacy");
-        contactFormPrivacy.hidden = !contactFormPrivacy.hidden;
-    }
-</script>
-
-<body>
+<body class="container">
 
     <header>
         <nav>
-            <a href="./index.html">Capir</a>
-            <a href="./about.html">About</a>
+            <a href="./index.html">Home</a>
             <a href="./contact.html"><b>Contact</b></a>
-            <a href="./privacy.html">Privacy</a>
         </nav>
     </header>
     <main>
@@ -83,7 +85,8 @@
         <div id="confirmation" hidden="true">
             <h2>Thank you for your submission!</h2>
         </div>
-        <div id="contactFormPrivacy" hidden="true">
+        <div id="contactFormPrivacy" hidden>
+            <button onclick="closePrivacy()" class="close-privacy-policy">X</button>
             <p>Effective Date: 2025-03-24</p>
             <h4>1. Introduction</h4>
             <p>
@@ -93,9 +96,9 @@
             <h4>2. Information We Collect</h4>
             <p> When you submit the contact form, we collect the following information:</p>
             <ul>
-                <li>Name (optional) – If provided, helps us address you personally.</li>
-                <li>Email (required) – Used to respond to your inquiry.</li>
-                <li>Message (required) – The content of your inquiry or feedback.</li>
+                <li>Name (optional): If provided, helps us address you personally.</li>
+                <li>Email (required): Used to respond to your inquiry.</li>
+                <li>Message (required): The content of your inquiry or feedback.</li>
             </ul>
             <h4>3. How We Use Your Information</h4>
             <p>We use the collected information solely for the purpose of:</p>
@@ -127,6 +130,7 @@
             <p>If you have any questions or concerns about this Privacy Policy, please contact us at <a
                     href="mailto:game.capir@gmail.com">game.capir@gmail.com</a>.
             </p>
+            <button onclick="closePrivacy()">CLOSE</button>
         </div>
 
     </main>
