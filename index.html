@@ -22,6 +22,62 @@
     <meta name="twitter:title" content="Capir - A Fun Mobile Game">
     <meta name="twitter:description" content="Play Capir, an exciting and addictive mobile game! Download now.">
     <meta name="twitter:image" content="https://gamecapir.github.io/images/feature-graphic-01.jpg">
+
+    <script>
+        const images = []
+        const cycleTime = 5000;
+        function cycleHeader() {
+            const currentImg = document.getElementById("feature");
+            const backImg = document.getElementById("feature-back");
+            let newImageIndex = 0;
+            function transitionFeatureImage() {
+                currentImg.style.transition = "none";
+                currentImg.style.opacity = "0";
+                backImg.src = currentImg.src;
+                setTimeout(() => {
+                    newImageIndex = (newImageIndex + 1) % images.length;
+                    currentImg.src = images[newImageIndex].src;
+                    currentImg.style.transition = `opacity ${cycleTime}ms linear`;
+                    currentImg.style.opacity = "1";
+                }, 0)
+            }
+            currentImg.ontransitionend = transitionFeatureImage
+            transitionFeatureImage()
+        }
+
+        function preloadImages(onAllLoaded) {
+            let loadedCount = 0;
+
+            const imageUrls = [
+                "./images/feature-graphic-01.jpg",
+                "./images/feature-graphic-02.jpg",
+                "./images/feature-graphic-03.jpg",
+                "./images/feature-graphic-04.jpg",
+                "./images/feature-graphic-05.jpg"
+            ];
+
+            imageUrls.forEach((url, index) => {
+                const img = new Image();
+                img.src = url;
+
+                img.onload = () => {
+                    loadedCount++;
+                    if (loadedCount === imageUrls.length) {
+                        cycleHeader();
+                    }
+                };
+
+                img.onerror = () => {
+                    console.error(`Failed to load image: ${url}`);
+                };
+
+                images[index] = img; // Store image reference
+            });
+        }
+
+        preloadImages()
+
+    </script>
 </head>
 
 <body class="container">
@@ -34,7 +90,10 @@
     </header>
 
     <main>
-        <img src="./images/feature-graphic-01.jpg">
+        <div id="feature-container" class="image-stack">
+            <img id="feature-back" src="">
+            <img id="feature" class="fade-image" src="./images/feature-graphic-01.jpg">
+        </div>
         <div class="download-link">
             <a role="button" href="https://play.google.com/store/apps/details?id=com.codi.capir"
                 target="_blank">Download on
