@@ -22,6 +22,62 @@
     <meta name="twitter:title" content="Capir - A Fun Mobile Game">
     <meta name="twitter:description" content="Play Capir, an exciting and addictive mobile game! Download now.">
     <meta name="twitter:image" content="https://gamecapir.github.io/images/feature-graphic-01.jpg">
+
+    <script>
+        const images = []
+        const cycleTime = 5000;
+        function cycleHeader() {
+            const currentImg = document.getElementById("feature");
+            const backImg = document.getElementById("feature-back");
+            let newImageIndex = 0;
+            function transitionFeatureImage() {
+                currentImg.style.transition = "none";
+                currentImg.style.opacity = "0";
+                backImg.src = currentImg.src;
+                setTimeout(() => {
+                    newImageIndex = (newImageIndex + 1) % images.length;
+                    currentImg.src = images[newImageIndex].src;
+                    currentImg.style.transition = `opacity ${cycleTime}ms linear`;
+                    currentImg.style.opacity = "1";
+                }, 0)
+            }
+            currentImg.ontransitionend = transitionFeatureImage
+            transitionFeatureImage()
+        }
+
+        function preloadImages(onAllLoaded) {
+            let loadedCount = 0;
+
+            const imageUrls = [
+                "./images/feature-graphic-01.jpg",
+                "./images/feature-graphic-02.jpg",
+                "./images/feature-graphic-03.jpg",
+                "./images/feature-graphic-04.jpg",
+                "./images/feature-graphic-05.jpg"
+            ];
+
+            imageUrls.forEach((url, index) => {
+                const img = new Image();
+                img.src = url;
+
+                img.onload = () => {
+                    loadedCount++;
+                    if (loadedCount === imageUrls.length) {
+                        cycleHeader();
+                    }
+                };
+
+                img.onerror = () => {
+                    console.error(`Failed to load image: ${url}`);
+                };
+
+                images[index] = img; // Store image reference
+            });
+        }
+
+        preloadImages()
+
+    </script>
 </head>
 
 <body class="container">
@@ -34,7 +90,10 @@
     </header>
 
     <main>
-        <img src="./images/feature-graphic-01.jpg">
+        <div id="feature-container" class="image-stack">
+            <img id="feature-back" src="">
+            <img id="feature" class="fade-image" src="./images/feature-graphic-01.jpg">
+        </div>
         <div class="download-link">
             <a role="button" href="https://play.google.com/store/apps/details?id=com.codi.capir"
                 target="_blank">Download on
@@ -48,9 +107,7 @@
         <p><b>Capir</b> has two game modes: <b>Challenge Mode</b> and <b>Free Mode</b>.</p>
         <section>
             <h2 class="subtitle"><img class="icon" src="./images/level_icon_easy.png" />Challenge Mode</h2>
-            <p><b>Challenge Mode</b> features handcrafted puzzles with move sequences that become increasingly difficult
-                to
-                solve as you advance.</p>
+            <p><b>Challenge Mode</b> puzzles are designed to increase in difficulty as you advance.</p>
             <p>The puzzles can be solved in 3, 4, or 5 moves, depending on the difficulty level.</p>
             <div class="blue-box">
                 3<img class="icon" src="./images/level_icon_easy.png" />
@@ -62,9 +119,9 @@
         </section>
         <section>
             <h2 class="subtitle"><img class="icon" src="./images/icon_mode_free.png" />Free Mode</h2>
-            <p>In <b>Free Mode</b>, each puzzle is randomly generated, with no fixed number of moves required to solve
-                it.</p>
-            <p>The best scores are recorded on a global leaderboard. Compete against the world!</p>
+            <p>In <b>Free Mode</b>, each puzzle is randomly created. The goal is to solve the puzzle using the least
+                number of moves.</p>
+            <p>The best scores are recorded on the global leaderboard. Can you beat them?</p>
             <img class="animation" src="./images/free-animation.webp" />
         </section>
         <section>
@@ -114,7 +171,7 @@
                     <li>b: Selected puzzle number</li>
                     <li>c: Selected puzzle</li>
                     <li>d: Completed puzzle</li>
-                    <li>e: Incompleted puzzle</li>
+                    <li>e: Incomplete puzzle</li>
                     <li>f: Locked puzzle</li>
                     <li>g: Go to game screen</li>
                     <li>h: Go to progress screen (unlocked)</li>
@@ -160,19 +217,18 @@
                 </div>
                 <img src="./images/icon_calendar.png" />
                 <div>
-                    <b>Seed of the day:</b>
-                    <p>This is a daily <b>Free Mode</b> level that you can compete in the leaderboard against your
-                        friends.</p>
+                    <b>Puzzle of the day:</b>
+                    <p>Daily <b>Free Mode</b> level. You can use it to compete against your friends.</p>
                 </div>
                 <img src="./images/icon_random.png" />
                 <div>
                     <b>Random seed:</b>
-                    <p>Play a random <b>Free Mode</b> level.</p>
+                    <p>Discover new puzzles by playing a random <b>Free Mode</b> level.</p>
                 </div>
                 <img src="./images/icon_edit.png" />
                 <div>
                     <b>Edit level:</b>
-                    <p>Type in the level you want to beat, choosing between 20 different boards and 9999 levels.
+                    <p>Type in the level you want to beat. You can choose between 20 different boards and 9999 levels.
                     </p>
                 </div>
             </div>

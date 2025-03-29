@@ -30,6 +30,17 @@
     display: block;
 }
 
+.image-stack {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1024 / 500;
+}
+
+.image-stack img {
+    position: absolute;
+    width: 100%;
+}
+
 .blue-box {
     background-color: #0065ae;
     padding: 0.5rem 0rem 0rem 0.5rem;
