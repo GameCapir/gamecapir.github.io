@@ -91,7 +91,7 @@
     display: inline-block;
 }
 
-img {
+img, video {
     margin: 0 auto;
     display: block;
 }
