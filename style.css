@@ -93,6 +93,7 @@
 img, video {
     margin: 0 auto;
     display: block;
+    max-width: 100%;
 }
 
 .icon {
